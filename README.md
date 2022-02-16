@@ -129,42 +129,6 @@ List details from array of `Movie` objects
 
 - update the movie list template (`/templates/list.php`) to loop through an array of `Movie` objects to create the movies table
 
-- create a PHP class `MovieRepository` that has a single method `findAll()` that returns an array of `Movie` objects:
-
-    ```php
-    <?php
-    namespace Tudublin;
-    
-    class MovieRepository
-    {
-        public function findAll()
-        {
-            $movies = [];
-    
-            $m1 = new Movie();
-            $m1->setId(1);
-            $m1->setTitle('Jaws');
-            $m1->setCategory('thriller');
-            $m1->setPrice(10.00);
-            $m1->setVoteTotal(5);
-            $m1->setNumVotes(1);
-            $movies[] = $m1;
-    
-            $m2 = new Movie();
-            $m2->setId(2);
-            $m2->setTitle('Jaws II');
-            $m2->setCategory('thriller');
-            $m2->setPrice(5.99);
-            $m2->setVoteTotal(77 * 90);
-            $m2->setNumVotes(77);
-            $movies[] = $m2;
-    
-            ... and so on 
-    
-            return $movies;
-        }
-    }
-
 
 - edit the movie list template `/templates/list.php` to loop through the array `movies`, using the getter values,a dnte star image method, to populate each table row:
 

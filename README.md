@@ -89,42 +89,60 @@ List details from array of `Movie` objects
     }
     ```
 
-- update the `list()` method of class `MainController` to create and pass an array of `Movie` objects to the movie list template
+- create a new class `/src/MovieFixtures.php` that declares a single method `getObjectArray()`. This method creates some `Movie` objects, and returns an array containing these objects. These objects will become the intial data to be displayed for out movie list page:
+
+  ```php
+        namespace Tudublin;
+        
+        class MovieFixtures
+        {
+            // return an array of objects, to become initial data in the database
+            public function getObjectArray()
+            {
+                $movies = [];
+        
+                $m1 = new Movie();
+                $m1->setId(1);
+                $m1->setTitle('Jaws');
+                $m1->setPrice(10.00);
+                $m1->setCategory('horror');
+                $m1->setNumVotes(5);
+                $m1->setVoteTotal(300);
+                $movies[] = $m1;
+        
+                $m2 = new Movie();
+                $m2->setId(2);
+                $m2->setTitle('Aliens');
+                $m2->setPrice(19.99);
+                $m2->setCategory('scifi');
+                $m2->setNumVotes(1);
+                $m2->setVoteTotal(75);
+                $movies[] = $m2;
+        
+                $m3 = new Movie();
+                $m3->setId(3);
+                $m3->setTitle('Shrek');
+                $m3->setPrice(5.99);
+                $m3->setCategory('cartoon');
+                $m3->setNumVotes(2);
+                $m3->setVoteTotal(100);
+                $movies[] = $m3;
+                
+                return $movies;
+            }
+        }
+  ```
+
+- update the `list()` method of class `MainController` to get the array of objects from a `MovieFixtures` instance, and pass that array of `Movie` objects to the movie list template
 
     ```php
         public function list()
         {
-            $movies = [];
-    
-            $m1 = new Movie();
-            $m1->setId(1);
-            $m1->setTitle('Jaws');
-            $m1->setPrice(10.00);
-            $m1->setCategory('horror');
-            $m1->setNumVotes(5);
-            $m1->setVoteTotal(300);
-            $movies[] = $m1;
-            
-            $m2 = new Movie();
-            $m2->setId(2);
-            $m2->setTitle('Aliens');
-            $m2->setPrice(19.99);
-            $m2->setCategory('scifi');
-            $m2->setNumVotes(1);
-            $m2->setVoteTotal(75);
-            $movies[] = $m2;
-    
-            $m3 = new Movie();
-            $m3->setId(3);
-            $m3->setTitle('Shrek');
-            $m3->setPrice(5.99);
-            $m3->setCategory('cartoon');
-            $m3->setNumVotes(2);
-            $m3->setVoteTotal(100);
-            $movies[] = $m3;
-    
+            $movieFixtures = new MovieFixtures();
+            $movies = $movieFixtures->getObjectArray();
+
             require_once __DIR__ . '/../templates/list.php';
-        }
+        }  
     ```
 
 - refactor the movie list template `/templates/list.php` to loop through the array `movies`, using the getter values, and star image method, to populate each table row:

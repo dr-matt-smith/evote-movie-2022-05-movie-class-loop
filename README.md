@@ -127,10 +127,7 @@ List details from array of `Movie` objects
         }
     ```
 
-- update the movie list template (`/templates/list.php`) to loop through an array of `Movie` objects to create the movies table
-
-
-- edit the movie list template `/templates/list.php` to loop through the array `movies`, using the getter values,a dnte star image method, to populate each table row:
+- refactor the movie list template `/templates/list.php` to loop through the array `movies`, using the getter values, and star image method, to populate each table row:
 
     ```php
         <table>
